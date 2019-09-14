@@ -1,0 +1,37 @@
+## Data Source
+
+The data is from the PGA tour website, which is comparing the major year end  statistics of the top 125 golfers* of the year. The top 125 golfers were analyzed due to this being the regulation cutoff.
+
+
+*there were roughly 5 exclusions from the top 125 due to some players not playing enough rounds to qualify for PGA stats measurements.(Tiger Woods, Shane Lowry, Matt Wolff etc.)
+
+
+## Correlation Results
+
+Since the PGA stats are being compared against rankings 1-125, there is an inverse relationship (the closer to -1 the better the correlation).  It looks like the highest correlated stats are SG: Tee to Green, SG: Approach to Green, Driving Distance, GIR, and Scrambling.  Notably, the lowest correlated variables are Driving Acc %, PPR, and SG: Putting. 
+
+## Correlation Plots 
+
+Like stated above, with the inverse relationship we should be looking at the top row of the plot and see if the scatterplots moves from top left to bottom right.
+
+lg is the data broken down into long game; Driving Distance,	Driving Acc %,	SG: Tee To Green,	GIR %,	SG: Approach to Green. 
+
+sg is the data broken down into short game; Scrambling %, SG: Around Greens,	PPR,	SG: Putting
+
+
+
+There are some insights you can see from the plots, such as the further you drive the ball the lower your driving accuracy is. Also short game almost doesn't matter too much, with the old adage of "drive for show putt for dough" being debunked!
+
+
+
+## Regression Modeling
+
+Below is a multiple regression model to attempt to try to see if we can predict the outcomes of the rankings. I took the highest correlated variables that we had found above and are using them for the regression model.
+
+## Regression Results
+
+It looks like the "strokes gained' stats are the most highly predictive variables when comparing to the rank of the players.  However, the model does not appear to be entirely accurate, some rankings were closer than others but all in all not very accurate.
+
+## Regression Plots
+
+Below are the comparisons to the actual rank vs the predicted rank visualized in barchart form.  The last chart below is comparing the most predictive variable, SG: Tee To Green, to give an idea of the relationship.
