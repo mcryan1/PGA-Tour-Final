@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np  
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+import matplotlib.pyplot as plt
+import seaborn as sb
+%matplotlib inline
+
+#loading the data
+df = pd.read_excel('Year End PGA.xlsx')
+df
+lg = pd.read_excel('Year End Long Game.xlsx')
+sg = pd.read_excel('Year End Short Game.xlsx')
+
+#correlation analysis
+df.corr()
+
+#plotting correlations
+sb.pairplot(lg)
+sb.pairplot(sg)
+
+#regression modeling 
+X = df[['Driving Distance','SG: Tee To Green','GIR %', 'SG: Approach to Green', 'Scrambling %']]
+y = df['RANK THIS WEEK']
+
+X_Train, X_Test, y_train, y_test = train_test_split(X, y, test_size = .25, random_state = 0)
+
+reg = LinearRegression()
+reg.fit(X_Train,y_train)
+
+coeff_df = pd.DataFrame(reg.coef_, X.columns, columns = ['Coefficients'])
+coeff_df
+
+#regression results
+
+predictions = reg.predict(X_Test)
+
+
+df1 = pd.DataFrame({'Actual Rank': y_test, 'Predicted Rank': predictions})
+display(df1)
+
+#regression plots
+
+df1.plot(kind = 'bar', figsize=(10,8))
+plt.show()
+
+sb.lmplot(x = 'SG: Tee To Green', y = 'RANK THIS WEEK', data = df)
+
